@@ -1,0 +1,62 @@
+:root,
+html.light {
+  --text-color: #222;
+  --bg-color: #fff;
+  --mode: "light";
+  background-image: url("/system-light");
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text-color: #eee;
+    --bg-color: #121212;
+    --mode: "dark";
+    background-image: url("/system-dark");
+  }
+}
+
+html.dark {
+  --text-color: #eee;
+  --bg-color: #121212;
+  --mode: "dark";
+}
+
+#toggle-form {
+  position: fixed;
+  top: 0;
+  right: 0;
+  padding: 10px;
+  margin: 10px;
+  background: var(--bg-color);
+  color: var(--text-color);
+  cursor: pointer;
+}
+
+#toggle-form label::after {
+  content: var(--mode);
+  cursor: pointer;
+}
+
+#toggle-form input {
+  position: absolute;
+  background: transparent;
+  inset: 0;
+  border: none;
+  cursor: pointer;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  height: 100%;
+  text-align: center;
+  background: var(--bg-color);
+  color: var(--text-color);
+}
