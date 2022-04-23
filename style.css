@@ -3,7 +3,6 @@ html.light {
   --text-color: #222;
   --bg-color: #fff;
   --mode: "light";
-  background-image: url("/system-light");
 }
 
 @media (prefers-color-scheme: dark) {
@@ -12,6 +11,12 @@ html.light {
     --bg-color: #121212;
     --mode: "dark";
     background-image: url("/system-dark");
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    background-image: url("/system-light");
   }
 }
 
