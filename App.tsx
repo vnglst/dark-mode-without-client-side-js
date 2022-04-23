@@ -11,11 +11,11 @@ export function App({ mode }: Props) {
     <html class={mode}>
       <link rel="stylesheet" href="/style.css" />
       <head>
-        <title>Hello from Deno</title>
+        <title>Hello darkness mode</title>
       </head>
       <body>
         <main>
-          <h1>Hello world!</h1>
+          <h1>Hello darkness mode!</h1>
           <form action="/toggle" method="POST" id="toggle-form">
             <label htmlFor="toggle" id="toggle-label">
               <input type="submit" value="" id="toggle" />
