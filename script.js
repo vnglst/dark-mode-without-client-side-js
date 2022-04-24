@@ -1,12 +1,14 @@
-const form = document.getElementById("toggle-form");
+const lightForm = document.getElementById("light-form");
+const darkForm = document.getElementById("dark-form");
 
-form.onsubmit = function (e) {
+lightForm.onsubmit = function (e) {
   e.preventDefault();
-  fetch(form.action, { method: "POST" });
-  const current = getComputedStyle(
-    document.getElementById("toggle-label"),
-    "::after",
-  ).content;
-  const next = current == '"light"' ? "dark" : "light";
-  document.documentElement.className = next;
+  fetch(lightForm.action, { method: "POST" });
+  document.documentElement.className = "dark";
+};
+
+darkForm.onsubmit = function (e) {
+  e.preventDefault();
+  fetch(darkForm.action, { method: "POST" });
+  document.documentElement.className = "light";
 };

@@ -16,22 +16,8 @@ When JavaScript is available the same request is made to `/toggle` (setting the 
 
 This works pretty well, but it's not perfect. When a user first visits the page and we're using the system mode the server has no way of knowing what the current system mode is. So when the user toggles the mode, the server will set the wrong mode half of the time.
 
-In my first attempt to fix this. I've added image requests in my stylesheet. One for dark mode (using `@media (prefers-color-scheme: dark)`):
+## Using Two forms
 
-```css
-@media (prefers-color-scheme: dark) {
-  :root {
-    background-image: url("/system-dark");
-  }
-}
-```
+To fix this we'll be using two forms. In light mode we only show the form that toggles to dark mode using the endpoint `/toggle-to-dark`. In dark mode we only show the form for switching to light mode using the endpoint `/toggle-to-light`.
 
-And one for light mode (`url("system-light")`). These image requests didn't actually request images, but upon receiving those requests the server will set the cookie to the correct mode.
-
-It works, but it does have quite a few disavantages though:
-
-- every page no does two extra images requests
-- when system dark mode changes during a session, the cookie could become out of sync
-- it's hacky solution
-
-## Improved solution: two forms
+When JavaScript is enabled the same logic is applied but then no page refresh is required. We just update the class of the html element to the respective light or dark mode.

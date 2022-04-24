@@ -2,52 +2,70 @@
 html.light {
   --text-color: #222;
   --bg-color: #fff;
-  --mode: "light";
+}
+
+html.dark {
+  --text-color: #eee;
+  --bg-color: #121212;
+}
+
+/* defaults for displaying toggle form */
+#light-form {
+  display: block;
+}
+
+#dark-form {
+  display: none;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --text-color: #eee;
     --bg-color: #121212;
-    --mode: "dark";
-    background-image: url("/system-dark");
+  }
+
+  /* In dark mode hide light form */
+  #light-form {
+    display: none;
+  }
+
+  #dark-form {
+    display: block;
   }
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    background-image: url("/system-light");
-  }
+/* When toggled to light mode */
+.light #light-form {
+  display: block;
 }
 
-html.dark {
-  --text-color: #eee;
-  --bg-color: #121212;
-  --mode: "dark";
+.light #dark-form {
+  display: none;
 }
 
-#toggle-form {
+/* When toggled to dark mode */
+.dark #light-form {
+  display: none;
+}
+
+.dark #dark-form {
+  display: block;
+}
+
+/* Form styling */
+.toggle-form {
   position: fixed;
   top: 0;
   right: 0;
-  padding: 10px;
-  margin: 10px;
-  background: var(--bg-color);
-  color: var(--text-color);
-  cursor: pointer;
 }
 
-#toggle-form label::after {
-  content: var(--mode);
-  cursor: pointer;
-}
-
-#toggle-form input {
-  position: absolute;
-  background: transparent;
-  inset: 0;
+.toggle-form input {
   border: none;
   cursor: pointer;
+  background: var(--bg-color);
+  color: var(--text-color);
+  padding: 15px;
+  margin: 10px;
 }
 
 html,

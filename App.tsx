@@ -18,10 +18,21 @@ export function App({ mode }: Props) {
       <body>
         <main>
           <h1>Hello darkness mode!</h1>
-          <form action="/toggle" method="POST" id="toggle-form">
-            <label htmlFor="toggle" id="toggle-label">
-              <input type="submit" value="" id="toggle" />
-            </label>
+          <form
+            action="/toggle-to-dark"
+            method="POST"
+            class="toggle-form"
+            id="light-form"
+          >
+            <input type="submit" id="light-button" value="Light" />
+          </form>
+          <form
+            action="/toggle-to-light"
+            method="POST"
+            class="toggle-form"
+            id="dark-form"
+          >
+            <input type="submit" id="dark-button" value="Dark" />
           </form>
         </main>
       </body>

@@ -19,44 +19,32 @@ console.log("Listening on http://localhost:8000");
 async function handler(req: Request) {
   const { pathname } = new URL(req.url);
 
-  // We're using two cookies here. One is to keep track of the
-  // user's system mode (dark/light). These cookies are set from
-  // image requests in the stylesheet.
-  const system = getCookies(req.headers).system;
-
-  // The other cookie is to keep track of the user's preferred
-  // dark mode. This cookie is set using the toggle button.
   const mode = getCookies(req.headers).mode;
 
-  // Toggle form sends are request to set the cookies for the
-  // preferred dark/light mode. Overriding the system setting.
-  if (pathname.startsWith("/toggle") && req.method === "POST") {
-    const current = mode || system;
-    const nextMode = current === "dark" ? "light" : "dark";
+  if (pathname.startsWith("/toggle-to-dark") && req.method === "POST") {
     const redirectUrl = new URL(req.url + "/..").href;
     const headers = new Headers({ location: redirectUrl });
 
     setCookie(headers, {
       name: "mode",
-      value: nextMode,
+      value: "dark",
       maxAge: 60 * 60 * 24 * 365, // 1 year
     });
 
     return new Response(null, { headers, status: 302 });
   }
 
-  // Request to set dark system cookie from stylesheet
-  if (pathname.startsWith("/system-dark")) {
-    const headers = new Headers();
-    setCookie(headers, { name: "system", value: "dark" });
-    return new Response("", { headers, status: 200 });
-  }
+  if (pathname.startsWith("/toggle-to-light") && req.method === "POST") {
+    const redirectUrl = new URL(req.url + "/..").href;
+    const headers = new Headers({ location: redirectUrl });
 
-  // Request to set light system cookie from stylesheet
-  if (pathname.startsWith("/system-light")) {
-    const headers = new Headers();
-    setCookie(headers, { name: "system", value: "light" });
-    return new Response("", { headers, status: 200 });
+    setCookie(headers, {
+      name: "mode",
+      value: "light",
+      maxAge: 60 * 60 * 24 * 365, // 1 year
+    });
+
+    return new Response(null, { headers, status: 302 });
   }
 
   // Loads static script file
