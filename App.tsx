@@ -7,8 +7,13 @@ type Props = {
 };
 
 export function App({ mode }: Props) {
+  // only add class props if mode is defined
+  const hasCustomMode = mode !== undefined;
+  const modeClass = mode === "dark" ? "dark" : "light";
+  const props = hasCustomMode ? { class: modeClass } : {};
+
   return (
-    <html class={mode ? (mode === "dark" ? "dark" : "light") : ""}>
+    <html {...props}>
       <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
