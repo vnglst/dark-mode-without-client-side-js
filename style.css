@@ -9,46 +9,39 @@ html.dark {
   --bg-color: #121212;
 }
 
-/* defaults for displaying toggle form */
-#light-form {
-  display: block;
-}
-
-#dark-form {
-  display: none;
-}
-
 @media (prefers-color-scheme: dark) {
   :root {
     --text-color: #eee;
     --bg-color: #121212;
   }
-
-  /* In dark mode hide light form */
-  #light-form {
-    display: none;
-  }
-
-  #dark-form {
-    display: block;
-  }
 }
 
-/* When toggled to light mode */
-.light #light-form {
+/* defaults for displaying toggle form */
+#light-form {
+  color-scheme: light;
   display: block;
 }
 
-.light #dark-form {
+#dark-form {
+  color-scheme: dark;
+  display: none;
+}
+
+/* When toggled to light mode */
+html.light #light-form {
+  display: block;
+}
+
+html.light #dark-form {
   display: none;
 }
 
 /* When toggled to dark mode */
-.dark #light-form {
+html.dark #light-form {
   display: none;
 }
 
-.dark #dark-form {
+html.dark #dark-form {
   display: block;
 }
 
