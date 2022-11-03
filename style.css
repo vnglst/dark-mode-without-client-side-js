@@ -14,20 +14,30 @@ html.dark {
     --text-color: #eee;
     --bg-color: #121212;
   }
+
+  #light-form {
+    color-scheme: light;
+    display: none;
+  }
+
+  #dark-form {
+    color-scheme: dark;
+    display: block;
+  }
 }
 
-/* defaults for displaying toggle form */
-#light-form {
-  color-scheme: light;
-  display: block;
+@media (prefers-color-scheme: light) {
+  #light-form {
+    color-scheme: light;
+    display: block;
+  }
+
+  #dark-form {
+    color-scheme: dark;
+    display: none;
+  }
 }
 
-#dark-form {
-  color-scheme: dark;
-  display: none;
-}
-
-/* When toggled to light mode */
 html.light #light-form {
   display: block;
 }
@@ -36,7 +46,6 @@ html.light #dark-form {
   display: none;
 }
 
-/* When toggled to dark mode */
 html.dark #light-form {
   display: none;
 }
@@ -45,7 +54,6 @@ html.dark #dark-form {
   display: block;
 }
 
-/* Form styling */
 .toggle-form {
   position: fixed;
   top: 0;

@@ -1,6 +1,6 @@
 /** @jsx h */
 
-import { h } from "https://deno.land/x/nano_jsx@v0.0.20/mod.ts";
+import { h } from "./deps.ts";
 
 type Props = {
   mode?: string;
@@ -28,17 +28,15 @@ export function App({ mode }: Props) {
             action="/toggle-to-dark"
             method="POST"
             class="toggle-form"
-            id="light-form"
-          >
-            <input type="submit" id="light-button" value="Light" />
+            id="light-form">
+            <input type="submit" id="light-button" value="To Dark" />
           </form>
           <form
             action="/toggle-to-light"
             method="POST"
             class="toggle-form"
-            id="dark-form"
-          >
-            <input type="submit" id="dark-button" value="Dark" />
+            id="dark-form">
+            <input type="submit" id="dark-button" value="To Light" />
           </form>
         </main>
       </body>

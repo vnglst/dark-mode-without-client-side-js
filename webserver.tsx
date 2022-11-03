@@ -1,15 +1,9 @@
 /** @jsx h */
-/// <reference no-default-lib="true"/>
-/// <reference lib="dom" />
-/// <reference lib="dom.asynciterable" />
-/// <reference lib="deno.ns" />
 
-import { serve } from "https://deno.land/std@0.114.0/http/server.ts";
-import { h, renderSSR } from "https://deno.land/x/nano_jsx@v0.0.20/mod.ts";
-import {
-  getCookies,
-  setCookie,
-} from "https://deno.land/std@0.136.0/http/cookie.ts";
+import { serve } from "./deps.ts";
+import { h, renderSSR } from "./deps.ts";
+import { getCookies, setCookie } from "./deps.ts";
+
 import { App } from "./App.tsx";
 
 serve(handler);
