@@ -13,8 +13,6 @@ console.log("Listening on http://localhost:8000");
 async function handler(req: Request) {
   const { pathname } = new URL(req.url);
 
-  const mode = getCookies(req.headers).mode;
-
   if (pathname.startsWith("/toggle-to-dark") && req.method === "POST") {
     const redirectUrl = new URL(req.url + "/..").href;
     const headers = new Headers({ location: redirectUrl });
@@ -50,12 +48,24 @@ async function handler(req: Request) {
   }
 
   // Loads stylesheet file
-  if (pathname.startsWith("/style.css")) {
-    const file = await Deno.readFile("./style.css");
+  if (pathname.startsWith("/tailwind.css")) {
+    const file = await Deno.readFile("./tailwind.css");
     return new Response(file, { headers: { "Content-Type": "text/css" } });
   }
 
+  const systemMode =
+    req.headers.get("sec-ch-prefers-color-scheme") || undefined;
+  const userMode = getCookies(req.headers).mode;
+
   // Renders html, note the JSX is only used as a template language.
-  const html = renderSSR(<App mode={mode} />);
-  return new Response(html, { headers: { "Content-Type": "text/html" } });
+  const html = renderSSR(<App mode={userMode || systemMode} />);
+
+  return new Response(html, {
+    headers: {
+      "Content-Type": "text/html",
+      "Accept-CH": "Sec-CH-Prefers-Color-Scheme",
+      Vary: "Sec-CH-Prefers-Color-Scheme",
+      "Critical-CH": "Sec-CH-Prefers-Color-Scheme",
+    },
+  });
 }
