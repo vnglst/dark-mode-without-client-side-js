@@ -2,6 +2,7 @@ const lightForm = document.getElementById("light-form");
 const darkForm = document.getElementById("dark-form");
 
 lightForm.onsubmit = function (e) {
+  // TODO: Refactor to one handler
   e.preventDefault();
   fetch(lightForm.action, { method: "POST" });
   document.documentElement.classList.add("dark");

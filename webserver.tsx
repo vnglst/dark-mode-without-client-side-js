@@ -13,6 +13,7 @@ console.log("Listening on http://localhost:8000");
 async function handler(req: Request) {
   const { pathname } = new URL(req.url);
 
+  // TODO: Refactor to 1 handler using a hidden input field
   if (pathname.startsWith("/toggle-to-dark") && req.method === "POST") {
     const redirectUrl = new URL(req.url + "/..").href;
     const headers = new Headers({ location: redirectUrl });

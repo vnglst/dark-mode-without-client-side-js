@@ -30,6 +30,7 @@ export function App({ mode }: Props) {
       <body class="bg-white text-gray-900 dark:bg-black dark:text-gray-50">
         <main>
           <h1>Hello darkness mode!</h1>
+          {/* TODO: Refactor this to 1 form component, with different props? */}
           <form
             class="block dark:hidden"
             action="/toggle-to-dark"
